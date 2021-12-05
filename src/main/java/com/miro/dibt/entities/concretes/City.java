@@ -9,19 +9,23 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "categories")
+@Table(name = "cities")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class City {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "category_name")
-    private String categoryName;
+    @Column(name = "name")
+    private String name;
 
-    @OneToMany()
-    private List<Report>  reports;
+    @Column(name = "plate_code")
+    private int plateCode;
+
+    @OneToMany(mappedBy = "city")
+    private List<District> districts;
+
 }

@@ -24,5 +24,8 @@ public class Municipality extends User {
     @Column(name = "corporate_name")
     private String corporateName;
 
+    @OneToOne(mappedBy = "municipality")
+    private District district;
+
 
 }
