@@ -37,4 +37,31 @@ public final class Messagess {
     public static String addressDelete = "Address is deleted";
 
 
+    public static String categoryListed = "Category is listed";
+    public static String categorySave = "Category is saved";
+    public static String categoryUpdate = "Category is updated";
+    public static String categoryDelete = "Category is deleted";
+
+    public static String reportListed = "Report is listed";
+    public static String reportSave = "Report is saved";
+    public static String reportUpdate ="Report is updated";
+    public static String reportDelete = "Report is deleted";
+
+
+    public static String commentListed = "Comment is listed";
+    public static String commentSave = "Comment is saved";
+    public static String commentUpdate = "Comment is updated";
+    public static String commentDelete = "Comment is deleted";
+
+
+    public static String emailListed = "Email is listed";
+    public static String emailSaved = "Email is saved";
+    public static String emailUpdate = "Email is updated";
+    public static String emailDeleted = "Email is deleted";
+
+
+    public static String photoListed = "Photo is listed";
+    public static String photoSaved = "Photo is saved";
+    public static String photoUpdated = "Photo is updated";
+    public static String photoDeleted = "Photo is deleted";
 }
