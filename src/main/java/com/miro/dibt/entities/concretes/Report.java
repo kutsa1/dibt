@@ -8,13 +8,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "reports")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Report {
 
     @Id
@@ -31,4 +31,12 @@ public class Report {
 
     @Column(name = "number_of_like")
     private int numberOfLike;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany
+    private List<Comment> comments;
+
 }
