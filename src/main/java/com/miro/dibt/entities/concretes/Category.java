@@ -1,5 +1,6 @@
 package com.miro.dibt.entities.concretes;
 
+import com.miro.dibt.core.dataAccess.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 @Table(name = "categories")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Category implements IEntity {
 
     @Id
     @Column(name = "id")

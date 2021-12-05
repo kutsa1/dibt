@@ -1,5 +1,6 @@
 package com.miro.dibt.entities.concretes;
 
+import com.miro.dibt.core.dataAccess.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "address")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class Address implements IEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
