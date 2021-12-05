@@ -1,5 +1,6 @@
 package com.miro.dibt.entities.concretes;
 
+import com.miro.dibt.core.dataAccess.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public class User implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

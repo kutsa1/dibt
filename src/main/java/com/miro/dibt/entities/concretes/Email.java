@@ -1,6 +1,7 @@
 package com.miro.dibt.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.miro.dibt.core.dataAccess.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.Date;
 @Table(name = "mails")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Email {
+public class Email implements IEntity {
 
     @Id
     @Column(name = "id")
