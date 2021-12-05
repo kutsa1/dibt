@@ -24,6 +24,11 @@ public class User implements IEntity {
     private int id;
 
     @NotNull
+    @NotBlank(message = "please fill full name")
+    @Column(name = "name")
+    private String name;
+
+    @NotNull
     @NotBlank(message = "please fill full username")
     @Column(name = "username")
     private String username;
