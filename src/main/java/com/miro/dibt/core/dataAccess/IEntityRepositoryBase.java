@@ -1,11 +1,14 @@
 package com.miro.dibt.core.dataAccess;
 
+import com.miro.dibt.core.utilities.DataResult;
+import com.miro.dibt.core.utilities.IResult;
+
 import javax.persistence.Entity;
 import java.util.List;
 
 public interface IEntityRepositoryBase<T extends IEntity> {
-    List<T> getAll();
-    void add(T t);
-    void update(T t);
-    void delete (T t);
+    DataResult<List<T>> getAll();
+    IResult add(T t);
+    IResult update(T t);
+    IResult delete (T t);
 }
