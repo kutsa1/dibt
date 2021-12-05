@@ -8,7 +8,6 @@ import com.miro.dibt.core.utilities.SuccesDataResult;
 import com.miro.dibt.core.utilities.SuccessResult;
 import com.miro.dibt.dataAccess.abstracts.IAdminDao;
 import com.miro.dibt.entities.concretes.Admin;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
