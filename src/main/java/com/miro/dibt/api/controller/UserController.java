@@ -1,14 +1,18 @@
 package com.miro.dibt.api.controller;
 
 import com.miro.dibt.business.abstracts.IUserService;
+import com.miro.dibt.core.utilities.ErrorDataResult;
 import com.miro.dibt.entities.concretes.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,15 +29,16 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<?> add(User user) {
+    ResponseEntity<?> add(@RequestBody @Valid User user) {
         var result = userService.add(user);
+
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/delete")
-    ResponseEntity<?> delete(User user) {
+    ResponseEntity<?> delete(@RequestBody User user) {
         var result = userService.delete(user);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
@@ -41,10 +46,11 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    ResponseEntity<?> update(User user) {
+    ResponseEntity<?> update(@RequestBody @Valid User user) {
         var result = userService.update(user);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
 }

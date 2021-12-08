@@ -3,7 +3,6 @@ package com.miro.dibt.core.dataAccess;
 import com.miro.dibt.core.utilities.DataResult;
 import com.miro.dibt.core.utilities.IResult;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 public interface IEntityRepositoryBase<T extends IEntity> {
