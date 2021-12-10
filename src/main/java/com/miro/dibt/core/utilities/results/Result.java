@@ -1,4 +1,4 @@
-package com.miro.dibt.core.utilities;
+package com.miro.dibt.core.utilities.results;
 
 public class Result extends IResult {
     public Result(boolean success, String message) {

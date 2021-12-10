@@ -44,8 +44,12 @@ public final class Messagess {
 
     public static String reportListed = "Report is listed";
     public static String reportSave = "Report is saved";
-    public static String reportUpdate ="Report is updated";
+    public static String reportUpdate = "Report is updated";
     public static String reportDelete = "Report is deleted";
+
+    public static String roleAdded = "role added";
+    public static String roleUpdated = "role updated";
+    public static String roleDeleted = "role deleted";
 
 
     public static String commentListed = "Comment is listed";
@@ -64,4 +68,16 @@ public final class Messagess {
     public static String photoSaved = "Photo is saved";
     public static String photoUpdated = "Photo is updated";
     public static String photoDeleted = "Photo is deleted";
+
+
+    public static String usernameAlreadyInUse = "username already in use";
+    public static String emailAlreadyInUse = "email already in use";
+    public static String roleNotFound = "role not found";
+    public static String roleAddedToUser = "role added to user";
+    public static String userNotFound = "user not found in database";
+    public static String roleNameAlreadyExist = "role name already exist";
+
+    public static String personAdded = "person is added";
+    public static String personUpdated = "person updated";
+    public static String personDeleted = "person deleted";
 }

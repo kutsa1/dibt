@@ -1,4 +1,4 @@
-package com.miro.dibt.entities.concretes;
+package com.miro.dibt.core.entities;
 
 import com.miro.dibt.core.entities.IEntity;
 import lombok.AllArgsConstructor;
@@ -6,25 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "roles")
 @Data
-@Table(name = "neighbourhoods")
-@NoArgsConstructor
 @AllArgsConstructor
-public class Neighbourhood implements IEntity {
+@NoArgsConstructor
+public class Role implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "neighbourhood_name")
+    @NotNull
+    @NotBlank
     private String name;
-
-    @ManyToOne()
-    @JoinColumn(name = "district_id")
-    private District district;
-
-
 }

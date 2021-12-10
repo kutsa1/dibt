@@ -2,10 +2,10 @@ package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.ICommentSerive;
 import com.miro.dibt.business.tools.Messagess;
-import com.miro.dibt.core.utilities.DataResult;
-import com.miro.dibt.core.utilities.IResult;
-import com.miro.dibt.core.utilities.SuccesDataResult;
-import com.miro.dibt.core.utilities.SuccessResult;
+import com.miro.dibt.core.utilities.results.DataResult;
+import com.miro.dibt.core.utilities.results.IResult;
+import com.miro.dibt.core.utilities.results.SuccesDataResult;
+import com.miro.dibt.core.utilities.results.SuccessResult;
 import com.miro.dibt.dataAccess.abstracts.ICommentDao;
 import com.miro.dibt.entities.concretes.Comment;
 import lombok.RequiredArgsConstructor;
