@@ -1,6 +1,6 @@
 package com.miro.dibt.business.tools;
 
-public final class Messagess {
+public final class Messages {
     public static String adminListed = "Admins are listed";
     public static String adminSaved = "Admin is saved";
     public static String adminUpdate = "Admin is updated";
@@ -76,8 +76,11 @@ public final class Messagess {
     public static String roleAddedToUser = "role added to user";
     public static String userNotFound = "user not found in database";
     public static String roleNameAlreadyExist = "role name already exist";
+    public static String userAlreadyHasRole = "user already has this role";
+    public static String nationalityIdAlreadyInUse = "nationality id already in use";
+
 
     public static String personAdded = "person is added";
     public static String personUpdated = "person updated";
     public static String personDeleted = "person deleted";
-}
+    }

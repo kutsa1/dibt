@@ -2,7 +2,7 @@ package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.IRoleService;
 import com.miro.dibt.business.abstracts.IUserService;
-import com.miro.dibt.business.tools.Messagess;
+import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.entities.Role;
 import com.miro.dibt.core.entities.User;
 import com.miro.dibt.core.utilities.business.BusinessRule;
@@ -54,7 +54,7 @@ public class UserManager implements IUserService, UserDetailsService {
     @Override
     public DataResult<List<User>> getAll() {
 
-        return new SuccesDataResult(iUserDao.findAll(), Messagess.userListed);
+        return new SuccesDataResult(iUserDao.findAll(), Messages.userListed);
     }
 
     @Override
@@ -67,32 +67,35 @@ public class UserManager implements IUserService, UserDetailsService {
             return result;
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         iUserDao.save(user);
-        return new SuccessResult(Messagess.userSave);
+        return new SuccessResult(Messages.userSave);
     }
 
     @Override
     public IResult update(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         iUserDao.save(user);
-        return new SuccessResult(Messagess.userUpdate);
+        return new SuccessResult(Messages.userUpdate);
     }
 
     @Override
     public IResult delete(User user) {
         iUserDao.delete(user);
-        return new SuccessResult(Messagess.userDelete);
+        return new SuccessResult(Messages.userDelete);
     }
 
     @Override
     public IResult addRoleToUser(String username, String roleName) {
 
-        var result = BusinessRule.run(isExistByUserName(username), isExistByRoleName(roleName));
+        var result = BusinessRule.run(
+                isExistByUserName(username),
+                isExistByRoleName(roleName),
+                ifUserAlreadyHasRole(username, roleName));
         if (result != null)
             return result;
         User user = iUserDao.findByUsername(username);
         Role role = iRoleService.findByName(roleName).getData();
         user.getRoles().add(role);
-        return new SuccessResult(Messagess.roleAddedToUser);
+        return new SuccessResult(Messages.roleAddedToUser);
     }
 
 
@@ -115,35 +118,48 @@ public class UserManager implements IUserService, UserDetailsService {
 
     private IResult ifAlreadyExistByUsername(String username) {
         if (iUserDao.existsByUsername(username))
-            return new ErrorResult(Messagess.usernameAlreadyInUse);
+            return new ErrorResult(Messages.usernameAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult ifAlreadyExistByEmail(String email) {
         if (iUserDao.existsByEmail(email))
-            return new ErrorResult(Messagess.emailAlreadyInUse);
+            return new ErrorResult(Messages.emailAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult isExistByRoleName(String roleName) {
         if (!iRoleService.findByName(roleName).isSuccess())
-            return new ErrorResult(Messagess.roleNotFound);
+            return new ErrorResult(Messages.roleNotFound);
         return new SuccessResult();
     }
 
     private IResult isExistById(int id) {
 
         if (!iUserDao.existsById(id))
-            return new ErrorResult(Messagess.userNotFound);
+            return new ErrorResult(Messages.userNotFound);
         return new SuccessResult();
 
     }
-    private IResult isExistByUserName(String  username) {
+
+    private IResult isExistByUserName(String username) {
 
         if (!iUserDao.existsByUsername(username))
-            return new ErrorResult(Messagess.userNotFound);
+            return new ErrorResult(Messages.userNotFound);
         return new SuccessResult();
 
+    }
+
+    private IResult ifUserAlreadyHasRole(String username, String roleName) {
+        User user = iUserDao.findByUsername(username);
+        var roles = user.getRoles();
+        if (roles != null) {
+            for (var role : roles) {
+                if (role.getName().equals(roleName) )
+                    return new ErrorResult(Messages.userAlreadyHasRole);
+            }
+        }
+        return new SuccessResult();
     }
 
 }

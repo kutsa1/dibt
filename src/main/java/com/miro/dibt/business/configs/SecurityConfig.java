@@ -1,4 +1,4 @@
-package com.miro.dibt.core.security.configs;
+package com.miro.dibt.business.configs;
 
 import com.miro.dibt.core.exceptions.CustomAccessDeniedHandler;
 import com.miro.dibt.core.exceptions.CustomAuthenticationFailureHandler;
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/users/getusers/**").hasAnyAuthority("user", "admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().antMatchers(GET, "/api/users/getall/**").hasAnyAuthority("user", "admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().antMatchers(POST, "/api/users/save/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().antMatchers(POST, "/api/persons/add/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().antMatchers(POST, "/api/users/addroletouser/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());

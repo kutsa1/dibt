@@ -1,7 +1,7 @@
 package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.ICityService;
-import com.miro.dibt.business.tools.Messagess;
+import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
@@ -20,24 +20,24 @@ private final ICityDao iCityDao;
 
     @Override
     public DataResult<List<City>> getAll() {
-        return new SuccesDataResult(iCityDao.findAll(), Messagess.cityListed);
+        return new SuccesDataResult(iCityDao.findAll(), Messages.cityListed);
     }
 
     @Override
     public IResult add(City city) {
         iCityDao.save(city);
-        return new SuccessResult(Messagess.cityAdd);
+        return new SuccessResult(Messages.cityAdd);
     }
 
     @Override
     public IResult update(City city) {
         iCityDao.save(city);
-        return new SuccessResult(Messagess.cityUpdate);
+        return new SuccessResult(Messages.cityUpdate);
     }
 
     @Override
     public IResult delete(City city) {
         iCityDao.delete(city);
-        return new SuccessResult(Messagess.cityDelete);
+        return new SuccessResult(Messages.cityDelete);
     }
 }

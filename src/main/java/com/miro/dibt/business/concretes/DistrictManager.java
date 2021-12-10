@@ -1,7 +1,7 @@
 package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.IDisctrictService;
-import com.miro.dibt.business.tools.Messagess;
+import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
@@ -20,24 +20,24 @@ public class DistrictManager implements IDisctrictService {
 
     @Override
     public DataResult<List<District>> getAll() {
-        return new SuccesDataResult(iDistrictDao.findAll(), Messagess.districtListed);
+        return new SuccesDataResult(iDistrictDao.findAll(), Messages.districtListed);
     }
 
     @Override
     public IResult add(District district) {
         iDistrictDao.save(district);
-        return new SuccessResult(Messagess.districtSave);
+        return new SuccessResult(Messages.districtSave);
     }
 
     @Override
     public IResult update(District district) {
         iDistrictDao.save(district);
-        return new SuccessResult(Messagess.districtUpdate);
+        return new SuccessResult(Messages.districtUpdate);
     }
 
     @Override
     public IResult delete(District district) {
         iDistrictDao.delete(district);
-        return new SuccessResult(Messagess.districtDelete);
+        return new SuccessResult(Messages.districtDelete);
     }
 }

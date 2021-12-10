@@ -2,7 +2,7 @@ package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.IPersonService;
 import com.miro.dibt.business.abstracts.IUserService;
-import com.miro.dibt.business.tools.Messagess;
+import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
 import com.miro.dibt.dataAccess.abstracts.IPersonDao;
@@ -41,7 +41,7 @@ public class PersonManager implements IPersonService {
 
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         personDao.save(person);
-        return new SuccessResult(Messagess.personAdded);
+        return new SuccessResult(Messages.personAdded);
 
     }
 
@@ -49,34 +49,34 @@ public class PersonManager implements IPersonService {
     public IResult update(Person person) {
         personDao.save(person);
 
-        return new SuccessResult(Messagess.personUpdated);
+        return new SuccessResult(Messages.personUpdated);
     }
 
     @Override
     public IResult delete(Person person) {
         personDao.delete(person);
-        return new SuccessResult(Messagess.personDeleted);
+        return new SuccessResult(Messages.personDeleted);
     }
 
 
     private IResult ifExistByUsername(String username) {
 
         if (personDao.existsByUsername(username))
-            return new ErrorResult(Messagess.usernameAlreadyInUse);
+            return new ErrorResult(Messages.usernameAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult ifExistByEmail(String email) {
 
         if (personDao.existsByEmail(email))
-            return new ErrorResult(Messagess.usernameAlreadyInUse);
+            return new ErrorResult(Messages.emailAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult ifExistByNationalityId(String nationalityId) {
 
         if (personDao.existsByNationalityId(nationalityId))
-            return new ErrorResult(Messagess.usernameAlreadyInUse);
+            return new ErrorResult(Messages.nationalityIdAlreadyInUse);
         return new SuccessResult();
     }
 
