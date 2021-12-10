@@ -1,4 +1,4 @@
-package com.miro.dibt.core.utilities;
+package com.miro.dibt.core.utilities.results;
 
 public class ErrorDataResult<T> extends DataResult {
     public ErrorDataResult(T data, String message) {

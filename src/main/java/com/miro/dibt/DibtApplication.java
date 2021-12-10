@@ -3,6 +3,8 @@ package com.miro.dibt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -13,16 +15,36 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class DibtApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DibtApplication.class, args);
-	}
-	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any())
-				.build();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DibtApplication.class, args);
+    }
 
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+//    @Bean
+//    CommandLineRunner run(IUserService userService, IRoleService roleService) {
+//        return args -> {
+//
+//            userService.add(new User(0, "kutsa1", "kutsal@kutsal.com", "12345", true, new ArrayList<>()));
+//            userService.add(new User(0, "iso", "iso@iso.com", "12345", true, new ArrayList<>()));
+//
+//            roleService.add(new Role(0, "admin"));
+//            roleService.add(new Role(0, "user"));
+//
+//            userService.addRoleToUser("kutsa1", "admin");
+//            userService.addRoleToUser("iso", "admin");
+//        };
+//}
 }

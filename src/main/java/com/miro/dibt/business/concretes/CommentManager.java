@@ -1,11 +1,11 @@
 package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.ICommentSerive;
-import com.miro.dibt.business.tools.Messagess;
-import com.miro.dibt.core.utilities.DataResult;
-import com.miro.dibt.core.utilities.IResult;
-import com.miro.dibt.core.utilities.SuccesDataResult;
-import com.miro.dibt.core.utilities.SuccessResult;
+import com.miro.dibt.business.tools.Messages;
+import com.miro.dibt.core.utilities.results.DataResult;
+import com.miro.dibt.core.utilities.results.IResult;
+import com.miro.dibt.core.utilities.results.SuccesDataResult;
+import com.miro.dibt.core.utilities.results.SuccessResult;
 import com.miro.dibt.dataAccess.abstracts.ICommentDao;
 import com.miro.dibt.entities.concretes.Comment;
 import lombok.RequiredArgsConstructor;
@@ -20,24 +20,24 @@ public class CommentManager implements ICommentSerive {
 
     @Override
     public DataResult<List<Comment>> getAll() {
-        return new SuccesDataResult(iCommentDao.findAll(), Messagess.commentListed);
+        return new SuccesDataResult(iCommentDao.findAll(), Messages.commentListed);
     }
 
     @Override
     public IResult add(Comment comment) {
         iCommentDao.save(comment);
-        return new SuccessResult(Messagess.commentSave);
+        return new SuccessResult(Messages.commentSave);
     }
 
     @Override
     public IResult update(Comment comment) {
         iCommentDao.save(comment);
-        return new SuccessResult(Messagess.commentUpdate);
+        return new SuccessResult(Messages.commentUpdate);
     }
 
     @Override
     public IResult delete(Comment comment) {
         iCommentDao.delete(comment);
-        return new SuccessResult(Messagess.commentDelete);
+        return new SuccessResult(Messages.commentDelete);
     }
 }

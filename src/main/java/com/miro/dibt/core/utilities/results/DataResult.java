@@ -1,4 +1,4 @@
-package com.miro.dibt.core.utilities;
+package com.miro.dibt.core.utilities.results;
 
 public class DataResult<T> extends Result {
     private T data;

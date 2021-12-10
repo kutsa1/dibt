@@ -1,8 +1,10 @@
 package com.miro.dibt.dataAccess.abstracts;
 
-import com.miro.dibt.entities.concretes.User;
+import com.miro.dibt.core.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IUserDao extends JpaRepository<User, Integer> {
-// İso burası sana süpriz  MOSSZEBBİ
+    User findByUsername(String username);
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 }
