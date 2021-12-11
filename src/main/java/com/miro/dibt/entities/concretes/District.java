@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,22 +17,17 @@ import java.util.List;
 
 public class District implements IEntity {
     @Id
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "name")
+    @NotNull
+    @NotNull
     private String name;
 
-
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
-
-    @OneToOne
-    @JoinColumn(name = "municipality_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @NotNull
     private Municipality municipality;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
     private List<Neighbourhood> neighbourhoods;
 }

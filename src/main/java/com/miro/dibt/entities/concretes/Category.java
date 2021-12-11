@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,13 +18,11 @@ import java.util.List;
 public class Category implements IEntity {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "category_name")
+    @NotNull
+    @NotBlank
     private String categoryName;
 
-    @OneToMany()
-    private List<Report>  reports;
 }

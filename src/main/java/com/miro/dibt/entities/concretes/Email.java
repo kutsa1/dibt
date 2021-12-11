@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -19,18 +18,22 @@ import java.util.Date;
 public class Email implements IEntity {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "content")
+    @NotNull
+    @NotBlank
     private String content;
 
-    @Column(name = "from_who")
+    @NotNull
+    @NotBlank
     private String fromWho;
 
-    @Column(name = "to_who")
+    @NotNull
+    @NotBlank
     private String toWho;
 
-    @Column(name = "date")
+    @NotNull
+    @NotBlank
     private Date date;
 }

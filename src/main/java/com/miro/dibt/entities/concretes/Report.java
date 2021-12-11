@@ -4,9 +4,10 @@ import com.miro.dibt.core.entities.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -18,22 +19,25 @@ import java.util.List;
 public class Report implements IEntity {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "text")
+    @NotNull
+    @NotBlank
     private String text;
 
-    @Column(name = "date_of_report")
-    @DateTimeFormat(pattern = "yyyy.MM.dd G 'at' HH:mm:ss z")
+    @NotNull
+    @NotBlank
     private Date dateOfReport;
 
-    @Column(name = "number_of_like")
+    @NotNull
+    private boolean status;
+
+    @NotNull
     private int numberOfLike;
 
-    @ManyToOne()
-    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Category category;
 
     @OneToMany

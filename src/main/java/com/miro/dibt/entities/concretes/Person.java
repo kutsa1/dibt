@@ -14,6 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +29,12 @@ public class Person extends User {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    List<Comment> comments;
+    @OneToMany()
+    List<Comment> comments = new ArrayList<>();
 
+    @OneToMany
+    @JsonIgnore
+    private List<Report> reports = new ArrayList<>();
 
     @NotNull
     @NotBlank
@@ -48,7 +52,7 @@ public class Person extends User {
     @NotNull
     private String gender;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date birthDay;
 
 }
