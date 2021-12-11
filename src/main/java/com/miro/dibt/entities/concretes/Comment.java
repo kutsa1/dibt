@@ -33,7 +33,6 @@ public class Comment implements IEntity {
     @NotNull
     private int numberOfLike;
 
-
     @NotNull
     private boolean status;
 
