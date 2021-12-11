@@ -152,14 +152,19 @@ public class UserManager implements IUserService, UserDetailsService {
 
     private IResult ifUserAlreadyHasRole(String username, String roleName) {
         User user = iUserDao.findByUsername(username);
-        var roles = user.getRoles();
-        if (roles != null) {
-            for (var role : roles) {
-                if (role.getName().equals(roleName) )
-                    return new ErrorResult(Messages.userAlreadyHasRole);
+        if(user != null)
+        {
+            var roles = user.getRoles();
+            if (roles != null) {
+                for (var role : roles) {
+                    if (role.getName().equals(roleName) )
+                        return new ErrorResult(Messages.userAlreadyHasRole);
+                }
+                return new SuccessResult();
             }
         }
-        return new SuccessResult();
+
+        return new ErrorResult(Messages.userNotFound);
     }
 
 }
