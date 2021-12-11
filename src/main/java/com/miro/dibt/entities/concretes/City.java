@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,13 +21,17 @@ public class City implements IEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-
+    @NotBlank
+    @NotNull
     private String name;
 
-
+    @NotNull
     private int plateCode;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
     private List<District> districts;
+
+    @OneToMany()
+    private List<Municipality> municipalities;
 
 }

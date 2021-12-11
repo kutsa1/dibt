@@ -1,13 +1,13 @@
 package com.miro.dibt.entities.concretes;
 
 import com.miro.dibt.core.entities.IEntity;
-import com.miro.dibt.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,25 +18,22 @@ import java.util.Date;
 public class Comment implements IEntity {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "text")
+
+    @NotBlank
+    @NotNull
     private String text;
 
-    @Column(name = "date_of_comment")
-    @DateTimeFormat(pattern = "yyyy.MM.dd G 'at' HH:mm:ss z")
+    @NotNull
+    @NotBlank
     private Date date;
 
-    @Column(name = "number_of_like")
+    @NotNull
     private int numberOfLike;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @NotNull
+    private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "report_id")
-    private Report report;
 }

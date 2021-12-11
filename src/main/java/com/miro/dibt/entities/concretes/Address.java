@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -18,15 +19,23 @@ public class Address implements IEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @NotNull
+    private Municipality municipality;
 
-    private int cityId;
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY)
+    private City city;
 
-    private int municipalityId;
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY)
+    private District district;
 
-    private int districtId;
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY)
+    private Neighbourhood neighbourhood;
 
-    private int neighbourhoodId;
-
+    @NotNull
     private String text;
 
 }

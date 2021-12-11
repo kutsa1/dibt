@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,16 +18,15 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Municipality extends User {
 
-    @Column(name = "id")
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "corporate_name")
+    @NotNull
+    @NotBlank
     private String corporateName;
 
-    @OneToOne(mappedBy = "municipality")
-    private District district;
 
 
 }

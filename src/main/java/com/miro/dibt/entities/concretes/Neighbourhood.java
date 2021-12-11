@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,14 +18,10 @@ public class Neighbourhood implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id;
 
+    @NotNull
+    @NotBlank
     private String name;
-
-    @ManyToOne()
-    @JoinColumn(name = "district_id")
-    private District district;
-
 
 }
