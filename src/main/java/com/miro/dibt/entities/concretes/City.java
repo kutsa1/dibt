@@ -16,17 +16,16 @@ import java.util.List;
 public class City implements IEntity {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "name")
+
     private String name;
 
-    @Column(name = "plate_code")
+
     private int plateCode;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<District> districts;
 
 }

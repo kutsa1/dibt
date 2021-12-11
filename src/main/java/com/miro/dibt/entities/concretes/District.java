@@ -16,7 +16,7 @@ import java.util.List;
 
 public class District implements IEntity {
     @Id
-    @Column(name = "id")
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -32,6 +32,6 @@ public class District implements IEntity {
     @JoinColumn(name = "municipality_id")
     private Municipality municipality;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Neighbourhood> neighbourhoods;
 }

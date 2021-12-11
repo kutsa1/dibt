@@ -16,10 +16,9 @@ public class Neighbourhood implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+
     private int id;
 
-    @Column(name = "neighbourhood_name")
     private String name;
 
     @ManyToOne()
