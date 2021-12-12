@@ -43,9 +43,7 @@ public class UserManager implements IUserService, UserDetailsService {
             log.info("user found in the database: {}", username);
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        });
+        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
@@ -72,6 +70,14 @@ public class UserManager implements IUserService, UserDetailsService {
 
     @Override
     public IResult update(User user) {
+        var result = BusinessRule.run(
+                isExistById(user.getId()),
+                isUpdateableWithEmail(user.getEmail(), user.getId()),
+                isUpdateablewithUsername(user.getUsername(), user.getId())
+        );
+        if (result != null)
+            return result;
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         iUserDao.save(user);
         return new SuccessResult(Messages.userUpdate);
@@ -79,6 +85,9 @@ public class UserManager implements IUserService, UserDetailsService {
 
     @Override
     public IResult delete(User user) {
+        var result = BusinessRule.run(isExistById(user.getId()));
+        if (result != null)
+            return result;
         iUserDao.delete(user);
         return new SuccessResult(Messages.userDelete);
     }
@@ -101,7 +110,7 @@ public class UserManager implements IUserService, UserDetailsService {
 
     @Override
     public DataResult<User> getByUsername(String username) {
-        var result = BusinessRule.run(ifAlreadyExistByUsername(username));
+        var result = BusinessRule.run(isExistByUserName(username));
         if (result != null)
             return new ErrorDataResult<>(result.getMessage());
         return new SuccesDataResult<>(iUserDao.findByUsername(username));
@@ -152,19 +161,32 @@ public class UserManager implements IUserService, UserDetailsService {
 
     private IResult ifUserAlreadyHasRole(String username, String roleName) {
         User user = iUserDao.findByUsername(username);
-        if(user != null)
-        {
+        if (user == null)
+            return new ErrorResult(Messages.userNotFound);
+        else {
             var roles = user.getRoles();
             if (roles != null) {
                 for (var role : roles) {
-                    if (role.getName().equals(roleName) )
+                    if (role.getName().equals(roleName))
                         return new ErrorResult(Messages.userAlreadyHasRole);
                 }
-                return new SuccessResult();
             }
+            return new SuccessResult();
         }
+    }
 
-        return new ErrorResult(Messages.userNotFound);
+    private IResult isUpdateablewithUsername(String username, int id) {
+        var result = iUserDao.findByUsernameAndIdNot(username, id);
+        if (result != null)
+            return new ErrorResult(Messages.emailAlreadyInUse);
+        return new SuccessResult();
+    }
+
+    private IResult isUpdateableWithEmail(String email, int id) {
+        var result = iUserDao.findByEmailAndIdNot(email, id);
+        if (result != null)
+            return new ErrorResult(Messages.emailAlreadyInUse);
+        return new SuccessResult();
     }
 
 }

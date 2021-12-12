@@ -20,22 +20,22 @@ import java.util.List;
 public class City implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
     @NotNull
+    @Column(unique = true)
     private String name;
 
     @NotNull
+    @Column(unique = true)
     private int plateCode;
 
     @OneToMany()
-    @JsonIgnore
     private List<District> districts;
 
     @OneToMany()
-    @JsonIgnore
     private List<Municipality> municipalities;
 
 }

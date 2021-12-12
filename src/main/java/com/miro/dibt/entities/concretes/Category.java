@@ -18,11 +18,12 @@ import java.util.List;
 public class Category implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
     @NotBlank
+    @Column(unique = true)
     private String categoryName;
 
 }

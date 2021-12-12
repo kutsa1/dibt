@@ -1,9 +1,11 @@
 package com.miro.dibt.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.miro.dibt.core.entities.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,23 +18,23 @@ import javax.validation.constraints.NotNull;
 public class Address implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     @NotNull
     private Municipality municipality;
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     private City city;
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     private District district;
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     private Neighbourhood neighbourhood;
 
     @NotNull

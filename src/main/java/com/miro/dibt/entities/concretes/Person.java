@@ -1,6 +1,5 @@
 package com.miro.dibt.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.miro.dibt.core.entities.User;
 import lombok.AllArgsConstructor;
@@ -8,11 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +26,10 @@ import java.util.List;
 public class Person extends User {
 
 
-    @JsonIgnore
-    @OneToMany()
-    List<Comment> comments = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany
-    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Report> reports = new ArrayList<>();
 
     @NotNull
@@ -47,8 +44,9 @@ public class Person extends User {
 
     @NotBlank
     @NotNull
+    @Column(unique = true)
     @Size(max = 11, min = 11)
-    @Pattern(regexp = "^[0-9]",message = "Please enter valid id")
+//    @Pattern(regexp = "^[0-9]", message = "Please enter valid id")
     private String nationalityId;
 
     @NotBlank

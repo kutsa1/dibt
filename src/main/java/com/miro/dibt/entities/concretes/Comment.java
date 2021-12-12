@@ -26,8 +26,8 @@ public class Comment implements IEntity {
     @NotNull
     private String text;
 
-    @NotNull
-    @NotBlank
+
+
     private Date date;
 
     @NotNull
