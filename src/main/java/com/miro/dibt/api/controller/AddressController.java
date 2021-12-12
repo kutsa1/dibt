@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/addresses")
 public class AddressController extends ControllerBase<Address, IAddressService> {
 
-    public AddressController(IAddressService serviceBase) {
-        super(serviceBase);
+    IAddressService iAddressService;
+
+    public AddressController(IAddressService iAddressService) {
+        super(iAddressService);
+        this.iAddressService = iAddressService;
     }
 
 }

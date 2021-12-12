@@ -1,6 +1,6 @@
 package com.miro.dibt.business.concretes;
 
-import com.miro.dibt.business.abstracts.INeihgbourhoodService;
+import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NeighbourhoodManager implements INeihgbourhoodService {
+public class NeighbourhoodManager implements INeighbourhoodService {
     private final INeighbourhoodDao iNeighbourhoodDao;
 
     @Override
