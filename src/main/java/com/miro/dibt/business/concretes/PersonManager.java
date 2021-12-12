@@ -5,7 +5,7 @@ import com.miro.dibt.business.abstracts.IUserService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
-import com.miro.dibt.dataAccess.abstracts.IPersonDao;
+import com.miro.dibt.repo.abstracts.IPersonDao;
 import com.miro.dibt.entities.concretes.Person;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

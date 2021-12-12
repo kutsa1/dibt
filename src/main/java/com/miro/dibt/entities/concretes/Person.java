@@ -12,8 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,14 +37,18 @@ public class Person extends User {
 
     @NotNull
     @NotBlank
+    @Size(min = 2)
     private String name;
 
     @NotNull
     @NotBlank
+    @Size(min = 2)
     private String lastName;
 
     @NotBlank
     @NotNull
+    @Size(max = 11, min = 11)
+    @Pattern(regexp = "^[0-9]",message = "Please enter valid id")
     private String nationalityId;
 
     @NotBlank
