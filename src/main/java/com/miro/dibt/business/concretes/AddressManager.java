@@ -6,7 +6,7 @@ import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
 import com.miro.dibt.core.utilities.results.SuccessResult;
-import com.miro.dibt.dataAccess.abstracts.IAddressDao;
+import com.miro.dibt.repo.abstracts.IAddressDao;
 import com.miro.dibt.entities.concretes.Address;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

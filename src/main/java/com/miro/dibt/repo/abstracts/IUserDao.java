@@ -1,4 +1,4 @@
-package com.miro.dibt.dataAccess.abstracts;
+package com.miro.dibt.repo.abstracts;
 
 import com.miro.dibt.core.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

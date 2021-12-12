@@ -7,7 +7,7 @@ import com.miro.dibt.core.entities.Role;
 import com.miro.dibt.core.entities.User;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
-import com.miro.dibt.dataAccess.abstracts.IUserDao;
+import com.miro.dibt.repo.abstracts.IUserDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
