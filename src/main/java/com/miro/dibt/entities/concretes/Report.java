@@ -19,15 +19,14 @@ import java.util.List;
 public class Report implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
     @NotBlank
     private String text;
 
-    @NotNull
-    @NotBlank
+    
     private Date dateOfReport;
 
     @NotNull

@@ -2,7 +2,7 @@ package com.miro.dibt.core.api;
 
 import com.miro.dibt.core.entities.IEntity;
 import com.miro.dibt.core.utilities.business.IServiceBase;
-import com.miro.dibt.entities.concretes.Person;
+import com.miro.dibt.core.utilities.results.ErrorResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<
         var result = serviceBase.getAll();
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/add")
@@ -31,7 +31,7 @@ public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<
 
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/delete")
@@ -39,7 +39,7 @@ public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<
         var result = serviceBase.delete(t);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/update")
@@ -47,7 +47,7 @@ public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<
         var result = serviceBase.update(t);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

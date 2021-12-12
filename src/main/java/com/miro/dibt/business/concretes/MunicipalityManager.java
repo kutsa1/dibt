@@ -4,6 +4,7 @@ import com.miro.dibt.business.abstracts.IMunicipalityService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
+import com.miro.dibt.core.utilities.results.SuccesDataResult;
 import com.miro.dibt.core.utilities.results.SuccessResult;
 import com.miro.dibt.entities.concretes.Municipality;
 import com.miro.dibt.repo.abstracts.IMunicipalityDao;
@@ -21,7 +22,7 @@ public class MunicipalityManager implements IMunicipalityService {
 
     @Override
     public DataResult<List<Municipality>> getAll() {
-        return null;
+        return new SuccesDataResult<>(iMunicipalityDao.findAll());
     }
 
     @Override

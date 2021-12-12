@@ -1,6 +1,5 @@
 package com.miro.dibt.core.entities;
 
-import com.miro.dibt.core.entities.IEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +16,11 @@ import javax.validation.constraints.NotNull;
 public class Role implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
     @NotBlank
+    @Column(unique = true)
     private String name;
 }

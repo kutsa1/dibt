@@ -4,6 +4,7 @@ import com.miro.dibt.business.abstracts.IRoleService;
 import com.miro.dibt.business.abstracts.IUserService;
 import com.miro.dibt.core.entities.Role;
 import com.miro.dibt.core.entities.User;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,17 +42,23 @@ public class DibtApplication {
     }
 
     @Bean
-    CommandLineRunner run(IUserService userService, IRoleService roleService) {
-        return args -> {
-
-            userService.add(new User(0, "kutsa1", "kutsal@kutsal.com", "12345", true, new ArrayList<>()));
-            userService.add(new User(0, "iso", "iso@iso.com", "12345", true, new ArrayList<>()));
-
-            roleService.add(new Role(0, "admin"));
-            roleService.add(new Role(0, "user"));
-
-            userService.addRoleToUser("kutsa1", "admin");
-            userService.addRoleToUser("iso", "admin");
-        };
+    ModelMapper modelMapper() {
+        return new ModelMapper();
     }
+
+//    @Bean
+//    CommandLineRunner run(IUserService userService, IRoleService roleService) {
+//        return args -> {
+//
+//            userService.add(new User(0, "kutsa1", "kutsal@kutsal.com", "12345", true, new ArrayList<>()));
+//            userService.add(new User(0, "iso", "iso@iso.com", "12345", true, new ArrayList<>()));
+//
+//            roleService.add(new Role(0, "admin"));
+//            roleService.add(new Role(0, "user"));
+//
+//            userService.addRoleToUser("kutsa1", "admin");
+//            userService.addRoleToUser("iso", "admin");
+//        };
+//    }
 }
+
