@@ -1,6 +1,7 @@
 package com.miro.dibt.api.controller;
 
 import com.miro.dibt.business.abstracts.IRoleService;
+import com.miro.dibt.core.api.ControllerBase;
 import com.miro.dibt.core.entities.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,16 +15,14 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/role")
-@RequiredArgsConstructor
-public class RoleController {
+public class RoleController extends ControllerBase<Role, IRoleService> {
 
-    private final IRoleService roleService;
+    private final IRoleService iRoleService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody @Valid Role role) {
-        var result = roleService.add(role);
-        if (result.isSuccess())
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+    public RoleController(IRoleService iRoleService) {
+        super(iRoleService);
+        this.iRoleService = iRoleService;
     }
+
+
 }

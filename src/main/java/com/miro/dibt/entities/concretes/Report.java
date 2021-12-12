@@ -40,7 +40,7 @@ public class Report implements IEntity {
     @NotNull
     private Category category;
 
-    @OneToMany
+    @OneToMany()
     private List<Comment> comments;
 
 }
