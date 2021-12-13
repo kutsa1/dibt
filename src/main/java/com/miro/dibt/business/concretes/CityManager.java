@@ -40,4 +40,9 @@ private final ICityDao iCityDao;
         iCityDao.delete(city);
         return new SuccessResult(Messages.cityDelete);
     }
+
+    @Override
+    public DataResult<City> findByName(String cityName) {
+        return new SuccesDataResult<>(iCityDao.findByName(cityName));
+    }
 }

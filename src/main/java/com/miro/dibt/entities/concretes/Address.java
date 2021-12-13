@@ -21,9 +21,6 @@ public class Address implements IEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne()
-    @NotNull
-    private Municipality municipality;
 
     @NotNull
     @OneToOne()
