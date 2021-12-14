@@ -1,6 +1,7 @@
 package com.miro.dibt.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,9 @@ public class Person extends User {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Report> reports = new ArrayList<>();
 
+    @OneToOne()
+    private Address address;
+
     @NotNull
     @NotBlank
     @Size(min = 2)
@@ -45,8 +49,8 @@ public class Person extends User {
     @NotBlank
     @NotNull
     @Column(unique = true)
-    @Size(max = 11, min = 11)
-//    @Pattern(regexp = "^[0-9]", message = "Please enter valid id")
+    @Size(max = 11, min = 11,message = "please enter valid id")
+    @Pattern(regexp = "[0-9]", message = "Please enter valid id")
     private String nationalityId;
 
     @NotBlank

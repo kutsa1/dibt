@@ -84,4 +84,5 @@ public final class Messages {
     public static String personUpdated = "person updated";
     public static String personDeleted = "person deleted";
     public static String municipalityAdded = "municipality is added";
+    public static String cityNotFound = "city not found";
 }
