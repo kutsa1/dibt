@@ -9,4 +9,5 @@ public interface IAddressDao extends JpaRepository<Address, Integer> {
     List<Address> findByCityName(String cityName);
     List<Address> findByDistrictName(String districtName);
     List<Address> findByNeighbourhoodName(String neighbourhoodName);
+
 }

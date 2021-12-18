@@ -92,4 +92,5 @@ public final class Messages {
     public static String categoryNameBeUnique ="category name is already in use ";
     public static String cityNameBeUnique = "city name is already in use";
     public static String plateCodeBeUniqie = "This plate code is already in use";
+    public static String notFoundByDistrictName="There is no address by this name";
 }
