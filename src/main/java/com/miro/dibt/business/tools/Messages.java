@@ -86,4 +86,10 @@ public final class Messages {
     public static String municipalityAdded = "municipality is added";
     public static String cityNotFound = "city not found";
     public static String imageUploadError = "image can not upload";
+    public static String imageCanNotBeNull="image can not be null!";
+    public static String imageSizeUnValid = "image size should be less than 5000kb";
+
+    public static String categoryNameBeUnique ="category name is already in use ";
+    public static String cityNameBeUnique = "city name is already in use";
+    public static String plateCodeBeUniqie = "This plate code is already in use";
 }

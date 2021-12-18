@@ -11,6 +11,7 @@ import com.miro.dibt.entities.concretes.Report;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class ReportManager implements IReportService {
 
     @Override
     public IResult add(Report report) {
+        report.setDateOfReport(LocalDateTime.now());
         iReportDao.save(report);
         return new SuccessResult(Messages.reportSave);
     }

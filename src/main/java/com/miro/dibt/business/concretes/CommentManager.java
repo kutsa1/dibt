@@ -11,7 +11,11 @@ import com.miro.dibt.entities.concretes.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +29,7 @@ public class CommentManager implements ICommentSerive {
 
     @Override
     public IResult add(Comment comment) {
+        comment.setDate(LocalDateTime.now());
         iCommentDao.save(comment);
         return new SuccessResult(Messages.commentSave);
     }
