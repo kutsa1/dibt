@@ -85,4 +85,5 @@ public final class Messages {
     public static String personDeleted = "person deleted";
     public static String municipalityAdded = "municipality is added";
     public static String cityNotFound = "city not found";
+    public static String imageUploadError = "image can not upload";
 }
