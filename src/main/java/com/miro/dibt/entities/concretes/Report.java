@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Report implements IEntity {
     private String text;
 
     
-    private Date dateOfReport;
+    private LocalDateTime dateOfReport;
 
     @NotNull
     private boolean status;
@@ -41,5 +42,8 @@ public class Report implements IEntity {
 
     @OneToMany()
     private List<Comment> comments;
+
+    @OneToMany()
+    private List<Photo> photos;
 
 }

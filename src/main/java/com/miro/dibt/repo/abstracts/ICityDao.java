@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ICityDao extends JpaRepository<City, Integer> {
     City findByName(String cityName);
+
+    boolean existsByName(String cityName);
+
+    boolean existsByPlateCode(int plateCode);
 }
