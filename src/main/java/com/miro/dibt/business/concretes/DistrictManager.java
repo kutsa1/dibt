@@ -40,4 +40,9 @@ public class DistrictManager implements IDisctrictService {
         iDistrictDao.delete(district);
         return new SuccessResult(Messages.districtDelete);
     }
+
+    @Override
+    public DataResult<List<District>> findByName(String districtName) {
+        return new SuccesDataResult<>(iDistrictDao.findByName(districtName));
+    }
 }

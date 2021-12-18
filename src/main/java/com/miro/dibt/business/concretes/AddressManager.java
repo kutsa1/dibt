@@ -2,6 +2,7 @@ package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.IAddressService;
 import com.miro.dibt.business.abstracts.ICityService;
+import com.miro.dibt.business.abstracts.IDisctrictService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
@@ -17,6 +18,7 @@ import java.util.List;
 public class AddressManager implements IAddressService {
     private final IAddressDao iAddressDao;
     private final ICityService iCityService;
+    private final IDisctrictService iDisctrictService;
 
     @Override
     public DataResult<List<Address>> getAll() {
@@ -52,11 +54,15 @@ public class AddressManager implements IAddressService {
     }
 
 
-
     @Override
     public DataResult<List<Address>> findByDistrictName(String districtName) {
-        return null;
+        var result = BusinessRule.run(isExistByDistirctName(districtName));
+        if (result != null)
+            return new ErrorDataResult(result.getMessage());
+        return new SuccesDataResult<>(iAddressDao.findByDistrictName(districtName));
+
     }
+
 
     @Override
     public DataResult<List<Address>> findByNeighbourhoodName(String neighbourhoodName) {
@@ -69,5 +75,13 @@ public class AddressManager implements IAddressService {
         if (result.getData() == null)
             return new ErrorResult(Messages.cityNotFound);
         return new SuccessResult();
+    }
+
+    private IResult isExistByDistirctName(String districtName) {
+        var result = iDisctrictService.findByName(districtName);
+        if (result.getData() == null)
+            return new ErrorResult(Messages.notFoundByDistrictName);
+        return new SuccessResult();
+
     }
 }
