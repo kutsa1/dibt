@@ -19,10 +19,6 @@ import javax.validation.constraints.NotNull;
 public class Municipality extends User {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @NotNull
     @NotBlank
     private String corporateName;
