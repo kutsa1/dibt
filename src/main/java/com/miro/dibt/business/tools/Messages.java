@@ -91,7 +91,7 @@ public final class Messages {
 
     public static String categoryNameBeUnique = "category name is already in use ";
     public static String cityNameBeUnique = "city name is already in use";
-    public static String plateCodeBeUniqie = "This plate code is already in use";
+    public static String plateCodeBeUnique = "This plate code is already in use";
     public static String notFoundByDistrictName = "There is no address by this name";
     public static String notFoundByNeighbourhoodName = "There is no neighbourhood name ";
     public static String findByNeighbourhoodName = "Neighbourhood names listed by name";
@@ -99,7 +99,10 @@ public final class Messages {
     public static String cityFound = "city found";
     public static String districtFound = "District found";
     public static String districtNotFound = "District not found";
-    public static String neighbourhoodNotFound= "Neighbourhood not found";
+    public static String neighbourhoodNotFound = "Neighbourhood not found";
     public static String categoryByAsc = "Categories listed by ascending";
-    public static String categoryByDesc= "Categories listed by descending";
+    public static String categoryByDesc = "Categories listed by descending";
+    public static String municipalityNotFound = "Municipality not found";
+    public static String municipalityFound = "Municipality founded";
+
 }

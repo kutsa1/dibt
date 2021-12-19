@@ -72,7 +72,7 @@ public class CityManager implements ICityService {
 
     private IResult isPlateCodeUnique(int plateCode) {
         if (iCityDao.existsByPlateCode(plateCode))
-            return new ErrorResult(Messages.plateCodeBeUniqie);
+            return new ErrorResult(Messages.plateCodeBeUnique);
         return new SuccessResult();
 
     }
