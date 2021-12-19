@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -69,6 +68,11 @@ public class PhotoManager implements IPhotoService {
     public IResult delete(Photo photo) {
         iPhotoDao.delete(photo);
         return new SuccessResult(Messages.photoDeleted);
+    }
+
+    @Override
+    public DataResult<Photo> getById(Integer id) {
+        return null;
     }
 
     private IResult isPhotoNull(MultipartFile image) {

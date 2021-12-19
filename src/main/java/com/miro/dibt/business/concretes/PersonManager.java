@@ -58,6 +58,11 @@ public class PersonManager implements IPersonService {
         return new SuccessResult(Messages.personDeleted);
     }
 
+    @Override
+    public DataResult<Person> getById(Integer id) {
+        return null;
+    }
+
 
     private IResult ifExistByUsername(String username) {
 

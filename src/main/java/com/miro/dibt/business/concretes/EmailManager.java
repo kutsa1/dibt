@@ -40,4 +40,9 @@ public class EmailManager implements IEmailService {
         iEmailDao.delete(email);
         return new SuccessResult(Messages.emailDeleted);
     }
+
+    @Override
+    public DataResult<Email> getById(Integer id) {
+        return null;
+    }
 }

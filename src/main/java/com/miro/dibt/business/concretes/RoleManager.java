@@ -55,6 +55,11 @@ public class RoleManager implements IRoleService {
         return new SuccessResult(Messages.roleDeleted);
     }
 
+    @Override
+    public DataResult<Role> getById(Integer id) {
+        return null;
+    }
+
     private IResult ifExistByRoleName(String roleName) {
         if (roleDao.existsByName(roleName))
             return new ErrorResult(Messages.roleNameAlreadyExist);

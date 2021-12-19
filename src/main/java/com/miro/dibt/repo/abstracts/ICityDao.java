@@ -9,4 +9,5 @@ public interface ICityDao extends JpaRepository<City, Integer> {
     boolean existsByName(String cityName);
 
     boolean existsByPlateCode(int plateCode);
+
 }

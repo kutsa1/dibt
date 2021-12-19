@@ -3,6 +3,7 @@ package com.miro.dibt.business.concretes;
 import com.miro.dibt.business.abstracts.IAddressService;
 import com.miro.dibt.business.abstracts.ICityService;
 import com.miro.dibt.business.abstracts.IDisctrictService;
+import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
@@ -19,6 +20,7 @@ public class AddressManager implements IAddressService {
     private final IAddressDao iAddressDao;
     private final ICityService iCityService;
     private final IDisctrictService iDisctrictService;
+    private final INeighbourhoodService iNeighbourhoodService;
 
     @Override
     public DataResult<List<Address>> getAll() {
@@ -27,8 +29,40 @@ public class AddressManager implements IAddressService {
 
     @Override
     public IResult add(Address address) {
+        var result = BusinessRule.run(
+                isExistCityByCityId(address.getCity().getId()),
+                isExistDistrictByDistrictId(address.getDistrict().getId()),
+                isExistNeighbourhoodByNeighbourhoodId(address.getNeighbourhood().getId())
+
+        );
+
+        if (result != null)
+            return result;
+
         iAddressDao.save(address);
         return new SuccessResult(Messages.addressSave);
+    }
+
+    private IResult isExistNeighbourhoodByNeighbourhoodId(int neighbourhoodId) {
+        var result = iNeighbourhoodService.existByNeighbourhoodId(neighbourhoodId);
+        if (!result.isSuccess())
+            return new ErrorResult(Messages.neighbourhoodNotFound);
+        return new SuccessResult();
+
+    }
+
+    private IResult isExistDistrictByDistrictId(int districtId) {
+        var result =iDisctrictService.existByDistrictId(districtId);
+        if (!result.isSuccess())
+            return new ErrorResult(Messages.districtNotFound);
+        return new SuccessResult();
+    }
+
+    private IResult isExistCityByCityId(int cityId) {
+        var result = iCityService.existByCityId(cityId);
+        if (!result.isSuccess())
+            return new ErrorResult(Messages.cityNotFound);
+        return new SuccessResult();
     }
 
     @Override
@@ -44,13 +78,18 @@ public class AddressManager implements IAddressService {
     }
 
     @Override
+    public DataResult<Address> getById(Integer id) {
+        return new SuccesDataResult<>(iAddressDao.getById(id), Messages.addressListed);
+    }
+
+    @Override
     public DataResult<List<Address>> findByCityName(String cityName) {
         var result = BusinessRule.run(isExistCityByCityName(cityName));
 
         if (result != null)
             return new ErrorDataResult<>(result.getMessage());
 
-        return new SuccesDataResult<>(iAddressDao.findByCityName(cityName), Messages.cityListed);
+        return new SuccesDataResult<>(iAddressDao.findByCityName(cityName), Messages.addressListed);
     }
 
 
@@ -66,7 +105,15 @@ public class AddressManager implements IAddressService {
 
     @Override
     public DataResult<List<Address>> findByNeighbourhoodName(String neighbourhoodName) {
+        var result = BusinessRule.run(isExistByNeighbourhoodName(neighbourhoodName));
         return null;
+    }
+
+    private IResult isExistByNeighbourhoodName(String neighbourhoodName) {
+        var result = iNeighbourhoodService.findByNeighbourhoodName(neighbourhoodName);
+        if (result.getData() == null)
+            return new ErrorResult(Messages.notFoundByNeighbourhoodName);
+        return new SuccessResult();
     }
 
 
@@ -84,4 +131,5 @@ public class AddressManager implements IAddressService {
         return new SuccessResult();
 
     }
+
 }

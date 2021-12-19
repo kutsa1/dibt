@@ -43,4 +43,9 @@ public class MunicipalityManager implements IMunicipalityService {
     public IResult delete(Municipality municipality) {
         return null;
     }
+
+    @Override
+    public DataResult<Municipality> getById(Integer id) {
+        return null;
+    }
 }
