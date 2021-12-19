@@ -43,4 +43,9 @@ public class ReportManager implements IReportService {
         iReportDao.delete(report);
         return new SuccessResult(Messages.reportDelete);
     }
+
+    @Override
+    public DataResult<Report> getById(Integer id) {
+        return null;
+    }
 }

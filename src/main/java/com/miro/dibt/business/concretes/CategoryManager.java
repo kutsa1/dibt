@@ -25,6 +25,7 @@ public class CategoryManager implements ICategoryService {
     public IResult add(Category category) {
         var result = BusinessRule.run(
                 isCategoryUnique(category)
+
         );
         if (result != null)
             return result;
@@ -45,9 +46,28 @@ public class CategoryManager implements ICategoryService {
         return new SuccessResult(Messages.categoryDelete);
     }
 
+    @Override
+    public DataResult<Category> getById(Integer id) {
+
+        return new SuccesDataResult<>(iCategoryDao.getById(id),Messages.categoryListed);
+    }
+
     private IResult isCategoryUnique(Category category) {
         if (iCategoryDao.existsByCategoryName(category.getCategoryName()))
             return new ErrorResult (Messages.categoryNameBeUnique);
         return new SuccessResult();
+    }
+
+    @Override
+    public DataResult<List<Category>> getAllByCategoryAsc() {
+         var result = iCategoryDao.findAllByOrderByCategoryNameAsc();
+         return new SuccesDataResult<>(result, Messages.categoryByAsc);
+
+    }
+
+    @Override
+    public DataResult<List<Category>> getAllByCategoryDesc() {
+        var result = iCategoryDao.findAllByOrderByCategoryNameDesc();
+        return new SuccesDataResult<>(result, Messages.categoryByDesc);
     }
 }

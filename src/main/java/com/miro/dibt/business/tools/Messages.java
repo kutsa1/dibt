@@ -86,11 +86,23 @@ public final class Messages {
     public static String municipalityAdded = "municipality is added";
     public static String cityNotFound = "city not found";
     public static String imageUploadError = "image can not upload";
-    public static String imageCanNotBeNull="image can not be null!";
+    public static String imageCanNotBeNull = "image can not be null!";
     public static String imageSizeUnValid = "image size should be less than 5000kb";
 
-    public static String categoryNameBeUnique ="category name is already in use ";
+    public static String categoryNameBeUnique = "category name is already in use ";
     public static String cityNameBeUnique = "city name is already in use";
-    public static String plateCodeBeUniqie = "This plate code is already in use";
-    public static String notFoundByDistrictName="There is no address by this name";
+    public static String plateCodeBeUnique = "This plate code is already in use";
+    public static String notFoundByDistrictName = "There is no address by this name";
+    public static String notFoundByNeighbourhoodName = "There is no neighbourhood name ";
+    public static String findByNeighbourhoodName = "Neighbourhood names listed by name";
+    public static String getById = "The requested ones were brought by id";
+    public static String cityFound = "city found";
+    public static String districtFound = "District found";
+    public static String districtNotFound = "District not found";
+    public static String neighbourhoodNotFound = "Neighbourhood not found";
+    public static String categoryByAsc = "Categories listed by ascending";
+    public static String categoryByDesc = "Categories listed by descending";
+    public static String municipalityNotFound = "Municipality not found";
+    public static String municipalityFound = "Municipality founded";
+
 }
