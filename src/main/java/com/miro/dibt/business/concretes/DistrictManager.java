@@ -52,7 +52,8 @@ public class DistrictManager implements IDisctrictService {
 
     @Override
     public DataResult<District> getById(Integer id) {
-        return null;
+
+        return new SuccesDataResult<>(iDistrictDao.getById(id), Messages.districtListed);
     }
 
     @Override

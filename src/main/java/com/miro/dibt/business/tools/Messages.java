@@ -105,4 +105,9 @@ public final class Messages {
     public static String municipalityNotFound = "Municipality not found";
     public static String municipalityFound = "Municipality founded";
 
+    public static String municipalityUpdated="Municipality is updated";
+    public static String municipalityDeleted="Municipality is deleted";
+    public static String municipalityListed="Municipality listed ";
+    public static String personListed="Person listed";
+    public static String roleListed="Role listed";
 }

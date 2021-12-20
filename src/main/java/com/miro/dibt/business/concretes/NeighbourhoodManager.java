@@ -42,7 +42,8 @@ public class NeighbourhoodManager implements INeighbourhoodService {
 
     @Override
     public DataResult<Neighbourhood> getById(Integer id) {
-        return null;
+
+        return new SuccesDataResult<>(iNeighbourhoodDao.getById(id), Messages.neighbourhoodListed);
     }
 
     @Override
