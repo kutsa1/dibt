@@ -45,6 +45,7 @@ public class CommentManager implements ICommentSerive {
 
     @Override
     public DataResult<Comment> getById(Integer id) {
-        return null;
+
+        return new SuccesDataResult<>(iCommentDao.getById(id), Messages.commentListed);
     }
 }

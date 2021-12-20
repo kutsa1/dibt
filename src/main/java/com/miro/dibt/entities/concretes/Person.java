@@ -49,8 +49,8 @@ public class Person extends User {
     @NotBlank
     @NotNull
     @Column(unique = true)
-    @Size(max = 11, min = 11,message = "please enter valid id")
-    @Pattern(regexp = "[0-9]", message = "Please enter valid id")
+    @Size(max = 11, min = 11)
+    @Pattern(regexp = "^[1-9]{1}[0-9]{9}[02468]{1}$", message = "Please enter valid id")
     private String nationalityId;
 
     @NotBlank

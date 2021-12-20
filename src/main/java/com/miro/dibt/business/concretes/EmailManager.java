@@ -43,6 +43,7 @@ public class EmailManager implements IEmailService {
 
     @Override
     public DataResult<Email> getById(Integer id) {
+
         return null;
     }
 }

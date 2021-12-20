@@ -33,17 +33,20 @@ public class MunicipalityManager implements IMunicipalityService {
 
     @Override
     public IResult update(Municipality municipality) {
-        return null;
+        iMunicipalityDao.save(municipality);
+        return new SuccessResult(Messages.municipalityUpdated);
     }
 
     @Override
     public IResult delete(Municipality municipality) {
-        return null;
+        iMunicipalityDao.delete(municipality);
+        return new SuccessResult(Messages.municipalityDeleted);
     }
 
     @Override
     public DataResult<Municipality> getById(Integer id) {
-        return null;
+
+        return new SuccesDataResult<>(iMunicipalityDao.getById(id), Messages.municipalityListed);
     }
 
     @Override
