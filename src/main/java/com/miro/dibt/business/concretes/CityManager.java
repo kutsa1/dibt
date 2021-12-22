@@ -4,8 +4,8 @@ import com.miro.dibt.business.abstracts.ICityService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
-import com.miro.dibt.repo.abstracts.ICityDao;
 import com.miro.dibt.entities.concretes.City;
+import com.miro.dibt.repo.abstracts.ICityDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +50,7 @@ public class CityManager implements ICityService {
     public DataResult<City> findByName(String cityName) {
         return new SuccesDataResult<>(iCityDao.findByName(cityName));
     }
+
 
     private IResult isCityNameUnique(String cityName) {
         if (iCityDao.existsByName(cityName))
