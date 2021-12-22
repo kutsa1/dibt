@@ -117,8 +117,10 @@ public class UserManager implements IUserService, UserDetailsService {
     }
 
     @Override
-    public DataResult<User> getById(int id) {
-        var result = BusinessRule.run(isExistById(id));
+    public DataResult<User> getById(Integer id) {
+        var result = BusinessRule.run(
+                isExistById(id)
+        );
         if (result != null)
             return new ErrorDataResult<>(result.getMessage());
         return new SuccesDataResult<>(iUserDao.getById(id));

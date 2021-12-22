@@ -2,10 +2,7 @@ package com.miro.dibt.business.concretes;
 
 import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.business.tools.Messages;
-import com.miro.dibt.core.utilities.results.DataResult;
-import com.miro.dibt.core.utilities.results.IResult;
-import com.miro.dibt.core.utilities.results.SuccesDataResult;
-import com.miro.dibt.core.utilities.results.SuccessResult;
+import com.miro.dibt.core.utilities.results.*;
 import com.miro.dibt.repo.abstracts.INeighbourhoodDao;
 import com.miro.dibt.entities.concretes.Neighbourhood;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +18,7 @@ public class NeighbourhoodManager implements INeighbourhoodService {
     @Override
     public DataResult<List<Neighbourhood>> getAll() {
 
-        return new SuccesDataResult(iNeighbourhoodDao.findAll() , Messages.neighbourhoodListed);
+        return new SuccesDataResult(iNeighbourhoodDao.findAll(), Messages.neighbourhoodListed);
     }
 
     @Override
@@ -42,4 +39,24 @@ public class NeighbourhoodManager implements INeighbourhoodService {
         iNeighbourhoodDao.delete(neighbourhood);
         return new SuccessResult(Messages.neighbourhoodDelete);
     }
+
+    @Override
+    public DataResult<Neighbourhood> getById(Integer id) {
+
+        return new SuccesDataResult<>(iNeighbourhoodDao.getById(id), Messages.neighbourhoodListed);
+    }
+
+    @Override
+    public DataResult<List<Neighbourhood>> findByNeighbourhoodName(String neighbourhoodName) {
+        return new SuccesDataResult<>(iNeighbourhoodDao.findByName(neighbourhoodName), Messages.neighbourhoodListed);
+    }
+
+    @Override
+    public IResult existByNeighbourhoodId(int neighbourhoodId) {
+        if (iNeighbourhoodDao.existsById(neighbourhoodId))
+            return new SuccessResult(Messages.neighbourhoodListed);
+        return new ErrorResult(Messages.neighbourhoodNotFound);
+    }
+
+
 }

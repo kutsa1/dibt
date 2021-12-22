@@ -11,11 +11,8 @@ import com.miro.dibt.entities.concretes.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +41,11 @@ public class CommentManager implements ICommentSerive {
     public IResult delete(Comment comment) {
         iCommentDao.delete(comment);
         return new SuccessResult(Messages.commentDelete);
+    }
+
+    @Override
+    public DataResult<Comment> getById(Integer id) {
+
+        return new SuccesDataResult<>(iCommentDao.getById(id), Messages.commentListed);
     }
 }

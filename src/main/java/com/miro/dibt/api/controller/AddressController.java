@@ -1,6 +1,8 @@
 package com.miro.dibt.api.controller;
 
 import com.miro.dibt.business.abstracts.IAddressService;
+import com.miro.dibt.business.abstracts.IDisctrictService;
+import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.core.api.ControllerBase;
 import com.miro.dibt.core.utilities.results.ErrorResult;
 import com.miro.dibt.entities.concretes.Address;
@@ -17,14 +19,33 @@ public class AddressController extends ControllerBase<Address, IAddressService> 
 
     IAddressService iAddressService;
 
+
     public AddressController(IAddressService iAddressService) {
         super(iAddressService);
         this.iAddressService = iAddressService;
     }
 
+
+
     @GetMapping("/getbycityname")
     ResponseEntity<?> getByCityName(@RequestParam String cityName) {
         var result = iAddressService.findByCityName(cityName);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbydistrictname")
+    ResponseEntity<?> getByDistrictName(@RequestParam String districtName){
+        var result = iAddressService.findByDistrictName(districtName);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyneighbourhoodname")
+    ResponseEntity<?> getByNeighbourhoodName(@RequestParam String neighbourhoodName){
+        var result = iAddressService.findByNeighbourhoodName(neighbourhoodName);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);

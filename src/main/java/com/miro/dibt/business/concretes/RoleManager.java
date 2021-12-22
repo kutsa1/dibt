@@ -27,6 +27,11 @@ public class RoleManager implements IRoleService {
         return new SuccesDataResult<>(result);
     }
 
+    @Override
+    public IResult existByRoleId(int id) {
+        return null;
+    }
+
 
     @Override
     public DataResult<List<Role>> getAll() {
@@ -54,6 +59,13 @@ public class RoleManager implements IRoleService {
         roleDao.delete(role);
         return new SuccessResult(Messages.roleDeleted);
     }
+
+    @Override
+    public DataResult<Role> getById(Integer id) {
+        return new SuccesDataResult<>(roleDao.getById(id), Messages.roleListed);
+
+    }
+
 
     private IResult ifExistByRoleName(String roleName) {
         if (roleDao.existsByName(roleName))

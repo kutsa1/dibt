@@ -4,8 +4,8 @@ import com.miro.dibt.business.abstracts.ICityService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
-import com.miro.dibt.entities.concretes.City;
 import com.miro.dibt.repo.abstracts.ICityDao;
+import com.miro.dibt.entities.concretes.City;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,10 +47,21 @@ public class CityManager implements ICityService {
     }
 
     @Override
+    public DataResult<City> getById(Integer id) {
+        return new SuccesDataResult<>(iCityDao.getById(id), Messages.cityListed);
+    }
+
+    @Override
     public DataResult<City> findByName(String cityName) {
         return new SuccesDataResult<>(iCityDao.findByName(cityName));
     }
 
+    @Override
+    public IResult existByCityId(int cityId) {
+        if (iCityDao.existsById(cityId))
+            return new SuccessResult(Messages.cityFound);
+        else return new ErrorResult(Messages.cityNotFound);
+    }
 
     private IResult isCityNameUnique(String cityName) {
         if (iCityDao.existsByName(cityName))
@@ -61,7 +72,7 @@ public class CityManager implements ICityService {
 
     private IResult isPlateCodeUnique(int plateCode) {
         if (iCityDao.existsByPlateCode(plateCode))
-            return new ErrorResult(Messages.plateCodeBeUniqie);
+            return new ErrorResult(Messages.plateCodeBeUnique);
         return new SuccessResult();
 
     }

@@ -20,13 +20,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class PersonManager implements IPersonService {
-    private final IPersonDao personDao;
+    private final IPersonDao iPersonDao;
     private final PasswordEncoder passwordEncoder;
     private final IUserService userService;
 
     @Override
     public DataResult<List<Person>> getAll() {
-        return new SuccesDataResult<>(personDao.findAll());
+        return new SuccesDataResult<>(iPersonDao.findAll());
     }
 
     @Override
@@ -40,42 +40,48 @@ public class PersonManager implements IPersonService {
             return result;
 
         person.setPassword(passwordEncoder.encode(person.getPassword()));
-        personDao.save(person);
+        iPersonDao.save(person);
         return new SuccessResult(Messages.personAdded);
 
     }
 
     @Override
     public IResult update(Person person) {
-        personDao.save(person);
+        iPersonDao.save(person);
 
         return new SuccessResult(Messages.personUpdated);
     }
 
     @Override
     public IResult delete(Person person) {
-        personDao.delete(person);
+        iPersonDao.delete(person);
         return new SuccessResult(Messages.personDeleted);
+    }
+
+    @Override
+    public DataResult<Person> getById(Integer id) {
+
+        return new SuccesDataResult<>(iPersonDao.getById(id), Messages.personListed);
     }
 
 
     private IResult ifExistByUsername(String username) {
 
-        if (personDao.existsByUsername(username))
+        if (iPersonDao.existsByUsername(username))
             return new ErrorResult(Messages.usernameAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult ifExistByEmail(String email) {
 
-        if (personDao.existsByEmail(email))
+        if (iPersonDao.existsByEmail(email))
             return new ErrorResult(Messages.emailAlreadyInUse);
         return new SuccessResult();
     }
 
     private IResult ifExistByNationalityId(String nationalityId) {
 
-        if (personDao.existsByNationalityId(nationalityId))
+        if (iPersonDao.existsByNationalityId(nationalityId))
             return new ErrorResult(Messages.nationalityIdAlreadyInUse);
         return new SuccessResult();
     }

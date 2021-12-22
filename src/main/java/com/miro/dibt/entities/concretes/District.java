@@ -15,8 +15,7 @@ import java.util.List;
 @Table(name = "districts")
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class District implements IEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
