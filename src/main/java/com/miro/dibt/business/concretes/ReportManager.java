@@ -6,8 +6,9 @@ import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
 import com.miro.dibt.core.utilities.results.SuccessResult;
-import com.miro.dibt.repo.abstracts.IReportDao;
+import com.miro.dibt.entities.Dtos.ReportDetailDto;
 import com.miro.dibt.entities.concretes.Report;
+import com.miro.dibt.repo.abstracts.IReportDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,10 @@ public class ReportManager implements IReportService {
     @Override
     public DataResult<Report> getById(Integer id) {
         return null;
+    }
+
+    @Override
+    public DataResult<List<ReportDetailDto>> getAllReportDetailDto() {
+        return new SuccesDataResult<>(iReportDao.getAllReportDetailDto());
     }
 }

@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,7 +28,7 @@ public class Report implements IEntity {
     @NotBlank
     private String text;
 
-    
+
     private LocalDateTime dateOfReport;
 
     @NotNull
