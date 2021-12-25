@@ -10,4 +10,6 @@ public interface ICityService extends IServiceBase<City> {
 
     IResult existByCityId(int cityId);
 
+
+
 }
