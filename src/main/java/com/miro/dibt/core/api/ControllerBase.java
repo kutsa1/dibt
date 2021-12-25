@@ -43,6 +43,8 @@ public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+
+
     @PostMapping("/delete")
     ResponseEntity<?> delete(@RequestBody T t) {
         var result = serviceBase.delete(t);
