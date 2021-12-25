@@ -19,5 +19,4 @@ public class ReportDetailDto implements IDto {
     private LocalDateTime dateOfReport;
     private int numberOfLike;
 
-
 }

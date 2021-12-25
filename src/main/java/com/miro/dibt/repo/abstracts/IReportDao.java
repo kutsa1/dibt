@@ -12,6 +12,8 @@ public interface IReportDao extends JpaRepository<Report, Integer> {
 
 
 
-    @Query("select new com.miro.dibt.entities.Dtos.ReportDetailDto(r.id,r.text,p.name,r.category.categoryName,r.dateOfReport,r.numberOfLike) from Person p inner join p.reports r ")
+    @Query("select new com.miro.dibt.entities.Dtos.ReportDetailDto(r.id,r.text,p.name,r.category.categoryName,r.dateOfReport,r.numberOfLike ) from Person p inner join p.reports r ")
     List<ReportDetailDto> getAllReportDetailDto();
+
+
 }
