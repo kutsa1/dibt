@@ -5,8 +5,9 @@ import com.miro.dibt.business.abstracts.IPhotoService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
-import com.miro.dibt.repo.abstracts.IPhotoDao;
+import com.miro.dibt.entities.Dtos.PhotoWithReportDetailDto;
 import com.miro.dibt.entities.concretes.Photo;
+import com.miro.dibt.repo.abstracts.IPhotoDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,6 +50,11 @@ public class PhotoManager implements IPhotoService {
 
         }
         return new ErrorResult(result.getMessage());
+    }
+
+    @Override
+    public DataResult<List<PhotoWithReportDetailDto>> getAllPhotoWithReportDetailDto() {
+        return new SuccesDataResult<>(iPhotoDao.getAllPhotoWithReportDetailDto());
     }
 
     private IResult isImageSizeValid(MultipartFile image) {

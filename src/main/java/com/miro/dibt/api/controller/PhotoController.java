@@ -6,10 +6,7 @@ import com.miro.dibt.core.utilities.results.ErrorResult;
 import com.miro.dibt.entities.concretes.Photo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -19,13 +16,22 @@ public class PhotoController extends ControllerBase<Photo, IPhotoService> {
 
     public PhotoController(IPhotoService iPhotoService) {
         super(iPhotoService);
-        this.iPhotoService=iPhotoService;
+        this.iPhotoService = iPhotoService;
     }
 
     @PostMapping("/addimage")
-    public ResponseEntity<?> addImage(@RequestBody  MultipartFile image){
+    public ResponseEntity<?> addImage(@RequestBody MultipartFile image) {
         var result = iPhotoService.addImage(image);
-        if (result.isSuccess()){
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getallphotowithreportdetaildto")
+    public ResponseEntity<?> getAllPhotoWithReportDetailDto() {
+        var result = iPhotoService.getAllPhotoWithReportDetailDto();
+        if (result.isSuccess()) {
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);

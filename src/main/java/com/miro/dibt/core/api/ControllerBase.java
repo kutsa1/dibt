@@ -6,14 +6,12 @@ import com.miro.dibt.core.utilities.results.ErrorResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
+@CrossOrigin
 public class ControllerBase<T extends IEntity, ServiceBase extends IServiceBase<T>> {
 
     private final ServiceBase serviceBase;
