@@ -6,8 +6,9 @@ import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.IResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
 import com.miro.dibt.core.utilities.results.SuccessResult;
-import com.miro.dibt.repo.abstracts.ICommentDao;
+import com.miro.dibt.entities.Dtos.CommentDetailDto;
 import com.miro.dibt.entities.concretes.Comment;
+import com.miro.dibt.repo.abstracts.ICommentDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,10 @@ public class CommentManager implements ICommentSerive {
     public DataResult<Comment> getById(Integer id) {
 
         return new SuccesDataResult<>(iCommentDao.getById(id), Messages.commentListed);
+    }
+
+    @Override
+    public DataResult<List<CommentDetailDto>> getAllCommentDetailDto() {
+        return new SuccesDataResult<>(iCommentDao.getAllCommentDetailDto());
     }
 }
