@@ -7,7 +7,6 @@ import com.miro.dibt.cloudinaryApi.CloudinaryApi;
 import com.miro.dibt.core.utilities.results.DataResult;
 import com.miro.dibt.core.utilities.results.ErrorDataResult;
 import com.miro.dibt.core.utilities.results.SuccesDataResult;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +26,7 @@ public class CloudinaryAdapterManager implements ICloudinaryAdapterService {
     @Override
     public DataResult<Map> uploadImage(MultipartFile image) {
         var result = cloudinaryApi.uploadImage(image, cloudinary);
-        if (result != null)
+        if (result != null || result.isEmpty())
             return new SuccesDataResult<>(result);
         return new ErrorDataResult<>(Messages.imageUploadError);
     }

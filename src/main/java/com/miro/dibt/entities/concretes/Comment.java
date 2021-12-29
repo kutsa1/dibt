@@ -1,17 +1,19 @@
 package com.miro.dibt.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.miro.dibt.core.entities.IEntity;
+import com.miro.dibt.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +22,16 @@ import java.util.Date;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Comment implements IEntity {
+
+
+    @ManyToOne
+    @JsonIgnore
+    Report report;
+
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +42,10 @@ public class Comment implements IEntity {
     private String text;
 
 
-    private LocalDateTime date;
+    private boolean status = true;
+    private LocalDateTime date = LocalDateTime.now();
 
-    @NotNull
-    private int numberOfLike;
-
-    @NotNull
-    private boolean status;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
+    private List<CommentLike> likes = new ArrayList<>();
 }

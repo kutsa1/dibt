@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface ICommentDao extends JpaRepository<Comment, Integer> {
 
-    @Query("select new com.miro.dibt.entities.Dtos.CommentDetailDto(c.id,p.name,c.text,r.id,c.date,c.numberOfLike) from Person p join p.comments c join p.reports r")
+
+    //    @Query("select new com.miro.dibt.entities.Dtos.CommentDetailDto(c.id,r.id,u.username,c.text,c.date) from Comment c inner join c.user u inner join c.report r where r.id=:reportId")
+//    List<CommentDetailDto> getAllCommentDetailDto(int reportId);
+//}
+    @Query("select new com.miro.dibt.entities.Dtos.CommentDetailDto(c.id,r.id,u.username,c.text,c.date) from Comment c inner join c.user u inner join c.report r")
     List<CommentDetailDto> getAllCommentDetailDto();
 }

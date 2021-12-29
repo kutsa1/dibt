@@ -11,4 +11,6 @@ public interface IUserService extends IServiceBase<User> {
     DataResult<User> getByUsername(String username);
 
     DataResult<User> getById(Integer id);
+
+    IResult existsById(int userId);
 }

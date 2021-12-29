@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -37,5 +38,5 @@ public class Email implements IEntity {
 
     @NotNull
     @NotBlank
-    private Date date;
+    private LocalDateTime date  = LocalDateTime.now();
 }

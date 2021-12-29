@@ -4,17 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentDetailDto {
-
+public class AddressDetailDto {
     private int id;
-    private int reportId;
-    private String personName;
+    private int userId;
     private String text;
-    private LocalDateTime dateOfComment;
-
+    private String cityName;
+    private String districtName;
+    private String neighbourhoodName;
 }

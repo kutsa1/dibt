@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface IPhotoDao extends JpaRepository<Photo,Integer> {
+public interface IPhotoDao extends JpaRepository<Photo, Integer> {
 
 
-    @Query("select new com.miro.dibt.entities.Dtos.PhotoWithReportDetailDto(r.id,p.id,p.imgUrl) from Report r inner join r.photos p")
+    @Query("select new com.miro.dibt.entities.Dtos.PhotoWithReportDetailDto(r.id,p.id,p.imgUrl) from Photo p  join p.report r")
     List<PhotoWithReportDetailDto> getAllPhotoWithReportDetailDto();
 }

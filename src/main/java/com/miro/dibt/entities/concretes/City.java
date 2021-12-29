@@ -33,10 +33,12 @@ public class City implements IEntity {
     @Column(unique = true)
     private int plateCode;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "city")
+    @JsonIgnore
     private List<District> districts;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "city")
+    @JsonIgnore
     private List<Municipality> municipalities;
 
 }

@@ -9,30 +9,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Table(name = "municipalities")
+@Table(name = "report_likes")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
-public class Municipality extends User {
-
-
-    @NotNull
-    @NotBlank
-    private String corporateName;
+public class ReportLike {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
     @JsonIgnore
-    private City city;
+    private User user;
 
+    @ManyToOne
     @JsonIgnore
-    @OneToOne(mappedBy = "user")
-    private Address address;
-
+    private Report report;
 
 }

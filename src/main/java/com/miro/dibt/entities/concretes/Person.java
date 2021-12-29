@@ -1,7 +1,7 @@
 package com.miro.dibt.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,16 +24,29 @@ import java.util.List;
 @Table(name = "persons")
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Person extends User {
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Report> reports = new ArrayList<>();
 
-    @OneToOne()
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<CommentLike> commentLikes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ReportLike> reportLikes = new ArrayList<>();
+
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Address address;
 
     @NotNull
