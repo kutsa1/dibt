@@ -8,11 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IReportDao extends JpaRepository<Report, Integer> {
-    Report getById(int reportId);
 
-
-
-    @Query("select new com.miro.dibt.entities.Dtos.ReportDetailDto(r.id,r.text,p.name,r.category.categoryName,r.dateOfReport,r.numberOfLike ) from Person p inner join p.reports r ")
+    @Query("select new com.miro.dibt.entities.Dtos.ReportDetailDto(r.id,r.text,u.username,c.categoryName,r.dateOfReport ) from Report r join r.user u join r.category c where r.status = true ")
     List<ReportDetailDto> getAllReportDetailDto();
 
 

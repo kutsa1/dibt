@@ -7,6 +7,7 @@ import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.business.tools.Messages;
 import com.miro.dibt.core.utilities.business.BusinessRule;
 import com.miro.dibt.core.utilities.results.*;
+import com.miro.dibt.entities.Dtos.AddressDetailDto;
 import com.miro.dibt.entities.concretes.Address;
 import com.miro.dibt.repo.abstracts.IAddressDao;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +53,7 @@ public class AddressManager implements IAddressService {
     }
 
     private IResult isExistDistrictByDistrictId(int districtId) {
-        var result =iDisctrictService.existByDistrictId(districtId);
+        var result = iDisctrictService.existByDistrictId(districtId);
         if (!result.isSuccess())
             return new ErrorResult(Messages.districtNotFound);
         return new SuccessResult();
@@ -107,6 +108,15 @@ public class AddressManager implements IAddressService {
     public DataResult<List<Address>> findByNeighbourhoodName(String neighbourhoodName) {
         var result = BusinessRule.run(isExistByNeighbourhoodName(neighbourhoodName));
         return null;
+    }
+
+    @Override
+    public DataResult<List<AddressDetailDto>> getAllAddressDetailDto() {
+
+        var result = iAddressDao.getAllAddressDetailDto();
+        if (result != null)
+            return new SuccesDataResult<>(result, Messages.addressListed);
+        return new ErrorDataResult<>();
     }
 
     private IResult isExistByNeighbourhoodName(String neighbourhoodName) {

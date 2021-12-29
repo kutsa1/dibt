@@ -43,7 +43,7 @@ public class PhotoManager implements IPhotoService {
         Photo photo = new Photo();
         var resultImage = iCloudinaryAdapterService.uploadImage(image);
 
-        if (result.isSuccess()) {
+        if (resultImage.isSuccess()) {
             photo.setImgUrl(resultImage.getData().get("url").toString());
             iPhotoDao.save(photo);
             return new SuccessResult(Messages.photoSaved);
@@ -58,7 +58,7 @@ public class PhotoManager implements IPhotoService {
     }
 
     private IResult isImageSizeValid(MultipartFile image) {
-        if (image.getSize() > 5000)
+        if (image.getSize() > 5000000)
             return new ErrorResult(Messages.imageSizeUnValid);
         return new SuccessResult();
     }

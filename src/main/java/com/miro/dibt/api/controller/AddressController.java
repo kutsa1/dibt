@@ -1,8 +1,6 @@
 package com.miro.dibt.api.controller;
 
 import com.miro.dibt.business.abstracts.IAddressService;
-import com.miro.dibt.business.abstracts.IDisctrictService;
-import com.miro.dibt.business.abstracts.INeighbourhoodService;
 import com.miro.dibt.core.api.ControllerBase;
 import com.miro.dibt.core.utilities.results.ErrorResult;
 import com.miro.dibt.entities.concretes.Address;
@@ -26,7 +24,6 @@ public class AddressController extends ControllerBase<Address, IAddressService> 
     }
 
 
-
     @GetMapping("/getbycityname")
     ResponseEntity<?> getByCityName(@RequestParam String cityName) {
         var result = iAddressService.findByCityName(cityName);
@@ -36,7 +33,7 @@ public class AddressController extends ControllerBase<Address, IAddressService> 
     }
 
     @GetMapping("/getbydistrictname")
-    ResponseEntity<?> getByDistrictName(@RequestParam String districtName){
+    ResponseEntity<?> getByDistrictName(@RequestParam String districtName) {
         var result = iAddressService.findByDistrictName(districtName);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
@@ -44,13 +41,20 @@ public class AddressController extends ControllerBase<Address, IAddressService> 
     }
 
     @GetMapping("/getbyneighbourhoodname")
-    ResponseEntity<?> getByNeighbourhoodName(@RequestParam String neighbourhoodName){
+    ResponseEntity<?> getByNeighbourhoodName(@RequestParam String neighbourhoodName) {
         var result = iAddressService.findByNeighbourhoodName(neighbourhoodName);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/getalladdressdetaildto")
+    ResponseEntity<?> getAllAddressDetailDto() {
+        var result = iAddressService.getAllAddressDetailDto();
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 
 
 }

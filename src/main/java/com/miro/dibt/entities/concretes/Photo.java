@@ -1,5 +1,6 @@
 package com.miro.dibt.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.miro.dibt.core.entities.IEntity;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,13 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Photo implements IEntity {
 
+    @ManyToOne
+    @JsonIgnore
+    Report report;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
 
     @NotNull
     @NotBlank

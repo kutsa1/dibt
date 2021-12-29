@@ -17,6 +17,6 @@ public class ReportDetailDto implements IDto {
     private String personName;
     private String categoryName;
     private LocalDateTime dateOfReport;
-    private int numberOfLike;
+
 
 }

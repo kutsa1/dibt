@@ -126,6 +126,14 @@ public class UserManager implements IUserService, UserDetailsService {
         return new SuccesDataResult<>(iUserDao.getById(id));
     }
 
+    @Override
+    public IResult existsById(int userId) {
+        var result = iUserDao.existsById(userId);
+        if (result)
+            return new SuccessResult();
+        return new ErrorResult();
+    }
+
 
     private IResult ifAlreadyExistByUsername(String username) {
         if (iUserDao.existsByUsername(username))
