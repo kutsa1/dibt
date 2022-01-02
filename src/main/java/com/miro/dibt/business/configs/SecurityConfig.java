@@ -42,18 +42,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.cors();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**").permitAll();
-//        http.authorizeRequests().antMatchers(GET, "/api/users/getall/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-//        http.authorizeRequests().antMatchers(POST, "/api/users/save/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-//        http.authorizeRequests().antMatchers(POST, "/api/persons/add/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-//        http.authorizeRequests().antMatchers(POST, "/api/users/addroletouser/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-//        http.authorizeRequests().anyRequest().authenticated();
-//        http.addFilter(customAuthenticationFilter);
-//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests().antMatchers(GET, "/api/users/getall/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().antMatchers(POST, "/api/users/save/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().antMatchers(POST, "/api/persons/add/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().antMatchers(POST, "/api/users/addroletouser/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().anyRequest().authenticated();
+        http.addFilter(customAuthenticationFilter);
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 

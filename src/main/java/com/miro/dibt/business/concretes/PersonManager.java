@@ -89,4 +89,27 @@ public class PersonManager implements IPersonService {
     }
 
 
+    @Override
+    public DataResult<Person> findByUsernameAndPassword(String username, String password) {
+        var result = BusinessRule.run(isExistByUsername(username));
+
+        if (result != null)
+            return new ErrorDataResult<>(null, result.getMessage());
+
+        var user = iPersonDao.findByUsername(username);
+        var userPass = user.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
+
+        if (userPass.equals(user.getPassword()))
+            return new SuccesDataResult<>(iPersonDao.findByUsername(username));
+
+        return new ErrorDataResult<>(null, Messages.invalidCredentials);
+
+    }
+
+    private IResult isExistByUsername(String username) {
+        if (!iPersonDao.existsByUsername(username))
+            return new ErrorResult(Messages.userNotFound);
+        return new SuccessResult();
+    }
 }

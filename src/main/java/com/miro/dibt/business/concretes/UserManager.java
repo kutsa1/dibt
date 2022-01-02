@@ -127,6 +127,11 @@ public class UserManager implements IUserService, UserDetailsService {
     }
 
     @Override
+    public DataResult<User> getUserDetailDto(String username) {
+        return new SuccesDataResult<>(iUserDao.getUserDetailDto(username));
+    }
+
+    @Override
     public IResult existsById(int userId) {
         var result = iUserDao.existsById(userId);
         if (result)
