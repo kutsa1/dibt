@@ -80,7 +80,7 @@ public class AddressManager implements IAddressService {
 
     @Override
     public DataResult<Address> getById(Integer id) {
-        return new SuccesDataResult<>(iAddressDao.getById(id), Messages.addressListed);
+        return new SuccesDataResult<>(iAddressDao.findById(id), Messages.addressListed);
     }
 
     @Override
