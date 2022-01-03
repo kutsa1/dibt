@@ -115,4 +115,5 @@ public final class Messages {
     public static String commentLiked = "Comment Liked";
     public static String commentAddedToUser = "User made a Comment";
     public static String reportAddedToUser = "Report Added To User";
+    public static String invalidCredentials = "username or password is wrong";
 }

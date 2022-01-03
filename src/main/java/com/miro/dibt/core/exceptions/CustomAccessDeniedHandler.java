@@ -2,6 +2,7 @@ package com.miro.dibt.core.exceptions;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.miro.dibt.core.utilities.results.ErrorDataResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -54,7 +55,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         response
                 .getOutputStream()
                 .println(
-                        objectMapper.writeValueAsString(data)
+                        objectMapper.writeValueAsString(new ErrorDataResult<>(data))
                 );
     }
 }

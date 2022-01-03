@@ -2,6 +2,7 @@ package com.miro.dibt.core.exceptions;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.miro.dibt.core.utilities.results.ErrorDataResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -35,6 +36,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
                 exception.getMessage());
 
         response.getOutputStream()
-                .println(objectMapper.writeValueAsString(data));
+                .println(objectMapper.writeValueAsString(new ErrorDataResult<>(data)));
     }
 }

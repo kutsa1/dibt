@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.miro.dibt.core.utilities.results.ErrorDataResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -59,17 +60,17 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     Map<String, String> error = new HashMap<>();
                     error.put("error_message", exception.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);
-                    new ObjectMapper().writeValue(response.getOutputStream(), error);
+                    new ObjectMapper().writeValue(response.getOutputStream(), new ErrorDataResult<>(error));
                 }
             } else {
                 log.error("Error logging in: not authorized");
-                response.setHeader("error","test");
+                response.setHeader("error", "test");
                 response.setStatus(UNAUTHORIZED.value());
                 // response.sendError(FORBIDDEN.value());
                 Map<String, String> error = new HashMap<>();
                 error.put("error_message", UNAUTHORIZED.toString());
                 response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(), error);
+                new ObjectMapper().writeValue(response.getOutputStream(), new ErrorDataResult<>(error));
                 filterChain.doFilter(request, response);
 
             }
