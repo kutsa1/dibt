@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(POST, "/api/users/save/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().antMatchers(POST, "/api/persons/add/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().antMatchers(POST, "/api/users/addroletouser/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+        http.authorizeRequests().antMatchers(POST, "/api/users/getuserdetail/**").hasAnyAuthority("admin").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
